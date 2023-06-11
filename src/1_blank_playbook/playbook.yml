@@ -1,0 +1,12 @@
+---
+# This playbook deploys a simple standalone Tomcat 7 server.
+
+- hosts: dev
+  # become: yes
+  # become_user: root
+  gather_facts: no
+  roles:
+    - hello
+    - create_users
+    - delete_users
+      

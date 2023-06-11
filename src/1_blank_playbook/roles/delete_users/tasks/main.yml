@@ -1,0 +1,14 @@
+- name: reading the csv file
+  read_csv:
+   path: "./roles/create_users/files/username.csv"
+  register: user_list
+  delegate_to: localhost
+
+- name: Remove the user by username.csv list
+  become: yes
+  become_user: root 
+  ansible.builtin.user:
+    name: '{{ item.Username }}'
+    state: absent
+    remove: yes
+  loop: "{{ user_list.list }}"

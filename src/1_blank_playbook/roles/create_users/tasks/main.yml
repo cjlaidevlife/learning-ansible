@@ -1,0 +1,22 @@
+- name: Add the user 'frank' with a specific uid and a primary group of 'admin'
+  ansible.builtin.user:
+    name: frank 
+    comment: Frank Lai 
+    uid: 1001
+    group: root
+
+- name: reading the csv file
+  read_csv:
+   path: "./roles/create_users/files/username.csv"
+  register: user_list
+  delegate_to: localhost
+
+- name: Create User from username.csv list
+  become: yes
+  become_user: root 
+  ansible.builtin.user:
+    name: '{{ item.Username }}'
+    uid: '{{ item.UID }}'
+    shell: /bin/bash
+    groups: kali
+  loop: "{{ user_list.list }}"
