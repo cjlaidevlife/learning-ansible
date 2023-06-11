@@ -1,0 +1,6 @@
+---
+- hosts: kali 
+  tasks:
+    - name: "INFO: Hello World!"
+      debug:
+        msg: "Hello World!"
