@@ -1,5 +1,5 @@
 ---
-- hosts: kali 
+- hosts: dev 
   tasks:
     - name: "INFO: Hello World!"
       debug:
